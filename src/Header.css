@@ -1,0 +1,19 @@
+.header{
+    height: 60px;
+    display: flex;
+    align-items: center;
+    background-color: black;
+    position: sticky;
+    top: 0;
+    z-index: 100;
+}
+
+.store_name{
+    color: white;
+    font-size: medium;
+}
+
+.header_logo{
+    max-height: 100%;
+    max-width: 100%;
+}
