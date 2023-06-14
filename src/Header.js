@@ -21,7 +21,7 @@ function Header() {
           placeholder="Search..."
           title="search bar"
         />
-        <SearchIcon className="header_search_icon" />
+        <SearchIcon className="header_search_icon"/>
       </div>
 
       <div className="header_nav">

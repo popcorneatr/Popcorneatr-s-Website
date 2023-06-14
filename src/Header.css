@@ -35,6 +35,7 @@
     border: none;
     width: 100%;
     border-radius: 2px 0px 0px 2px;
+    outline-color: #cd9042;
 }
 
 .header_search_icon{
