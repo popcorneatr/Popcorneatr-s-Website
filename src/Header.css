@@ -13,12 +13,14 @@
     font-size: medium;
     margin-left: 10px;
     display: flex;
+    cursor: pointer;
 }
 
 .header_logo{
     max-height: 100%;
     max-width: 100%;
     object-fit: contain;
+    cursor: pointer;
 }
 
 .header_search{
@@ -68,6 +70,10 @@
 .header_option_line_two{
     font-size: 13px;
     font-weight: 800;
+}
+
+.clothing{
+    cursor: pointer;
 }
 
 .header_option_cart_icon{

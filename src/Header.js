@@ -2,17 +2,33 @@ import React from "react";
 import "./Header.css";
 import SearchIcon from "@mui/icons-material/Search";
 import ShoppingCartIcon from "@mui/icons-material/ShoppingCart";
+import {useNavigate} from "react-router-dom";
 
 function Header() {
+  const navigate = useNavigate();
+
+const handleClickClothes = () => {
+  navigate("/clothes")
+}
+
+  const handleClickCheckout = () => {
+    navigate("/checkout");
+  }
+
+  const handleClickHome = () => {
+    navigate("/")
+  }
+
   return (
     <div className="header">
       <img
         className="header_logo"
         src="https://64.media.tumblr.com/dff225353afead97f0c0768e8aa9a493/af2f149918e6c6e1-a8/s540x810/23c138ab73c3ed27a226c413ed8bed97e6405bc1.png"
         alt="Phantom Knight Torn Scales"
+        onClick={handleClickHome}
       />
 
-      <h1 className="store_name">Popcorneatr's Card Corner</h1>
+      <h1 className="store_name" onClick={handleClickHome}>Popcorneatr's Card Corner</h1>
 
       <div className="header_search">
         <input
@@ -37,11 +53,11 @@ function Header() {
 
         <div className="header_option">
           <span className="header_option_line_one">Your</span>
-          <span className="header_option_line_two">Prime</span>
+          <span className="header_option_line_two clothing" onClick={handleClickClothes}>Clothes</span>
         </div>
 
         <div className="header_option_cart_icon">
-          <ShoppingCartIcon />
+          <ShoppingCartIcon onClick={handleClickCheckout}/>
           <span className="header_option_line_two header_cart_count">0</span>
         </div>
       </div>
