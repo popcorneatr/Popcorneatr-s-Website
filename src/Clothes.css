@@ -27,3 +27,58 @@
     opacity: 0;
     cursor: default;
 }
+
+.clothes{
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: left;
+    padding-left: 4vw;
+}
+
+.clothes_container{
+    margin: 20px;
+}
+
+.image_container{
+    justify-items: center;
+    max-width: 20vw;
+    height: 30vh;
+}
+
+.image_container img{
+    
+    max-width: 100%;
+    max-height: 100%;
+}
+
+.description_container{
+    width: 20vw;
+    height: 50vh;
+    overflow-y: scroll;
+    background-color: rgb(247, 247, 247);
+}
+
+.clothes_title{
+    font-size: 16px;
+    line-height: 24px;
+    font-weight: 600;
+}
+
+.clothes_price{
+    margin: 10px;
+    font-size: 20px;
+    line-height: 20px;
+    font-weight: bold;
+}
+
+.clothes_description{
+    text-align: center;
+    padding: 5px;
+}
+
+button{
+    border: 1px solid;
+    border-radius: 15%;
+    background-color: #f0c14b;
+    margin: 10px;
+}

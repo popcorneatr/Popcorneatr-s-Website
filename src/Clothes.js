@@ -22,7 +22,7 @@ function Clothes() {
   const selectPageHandler = (selected_page) => {
     if (
       selected_page >= 1 &&
-      selected_page <= Math.ceil(api.length / 9) &&
+      selected_page <= Math.ceil(api.length / 8) &&
       selected_page !== page
     ) {
       setPage(selected_page);
@@ -34,51 +34,57 @@ function Clothes() {
   }, []);
 
   return (
-    <div className="clothes">
-      {api.slice(page * 9 - 9, page * 9).map((post) => {
-        return (
-          <div key={post.id}>
-            <div>
-              <h1>{post.title}</h1>
-              <h2>{post.category}</h2>
-              <p>{"$" + post.price}</p>
-              <img src={post.image} alt="men and women's clothing" />
-              <p>{post.description}</p>
-              <br />
-              <hr />
+    <div>
+      <div className="clothes">
+        {api.slice(page * 8 - 8, page * 8).map((post) => {
+          return (
+            <div className="clothes_container">
+              <div key={post.id}>
+                <div className="image_container">
+                  <img src={post.image} alt="men and women's clothing" />
+                </div>
+                <div className="description_container">
+                  <span className="clothes_title">{post.title}</span>
+                  
+                  <div className="clothes_price">{"$" + post.price}</div>
+                  <p className="clothes_description">{post.description}</p>
+                  <button>Add to Cart</button>
+                </div>
+              </div>
+              
             </div>
-          </div>
-        );
-      })}
+          );
+        })}
+      </div>
       {api.length > 0 && (
-        <div className="pagination">
-          <span
-            className={page > 1 ? "" : "pagination_disabled"}
-            onClick={() => selectPageHandler(page - 1)}
-          >
-            ◀
-          </span>
-          {[...Array(Math.ceil(api.length / 9))].map((_, i) => {
-            return (
-              <span
-                className={page === i + 1 ? "pagination_selected" : ""}
-                key={i}
-                onClick={() => selectPageHandler(i + 1)}
-              >
-                {i + 1}
-              </span>
-            );
-          })}
-          <span
-            className={
-              page < Math.ceil(api.length / 9) ? "" : "pagination_disabled"
-            }
-            onClick={() => selectPageHandler(page + 1)}
-          >
-            ▶
-          </span>
-        </div>
-      )}
+          <div className="pagination">
+            <span
+              className={page > 1 ? "" : "pagination_disabled"}
+              onClick={() => selectPageHandler(page - 1)}
+            >
+              ◀
+            </span>
+            {[...Array(Math.ceil(api.length / 8))].map((_, i) => {
+              return (
+                <span
+                  className={page === i + 1 ? "pagination_selected" : ""}
+                  key={i}
+                  onClick={() => selectPageHandler(i + 1)}
+                >
+                  {i + 1}
+                </span>
+              );
+            })}
+            <span
+              className={
+                page < Math.ceil(api.length / 8) ? "" : "pagination_disabled"
+              }
+              onClick={() => selectPageHandler(page + 1)}
+            >
+              ▶
+            </span>
+          </div>
+        )}
     </div>
   );
 }
