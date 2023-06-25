@@ -7,8 +7,8 @@ import {useNavigate} from "react-router-dom";
 function Header() {
   const navigate = useNavigate();
 
-const handleClickClothes = () => {
-  navigate("/clothes")
+const handleClickPokemon = () => {
+  navigate("/pokemon")
 }
 
   const handleClickCheckout = () => {
@@ -52,8 +52,8 @@ const handleClickClothes = () => {
         </div>
 
         <div className="header_option">
-          <span className="header_option_line_one">Your</span>
-          <span className="header_option_line_two clothing" onClick={handleClickClothes}>Clothes</span>
+          <span className="header_option_line_one">Visit</span>
+          <span className="header_option_line_two clothing" onClick={handleClickPokemon}>Pokemon</span>
         </div>
 
         <div className="header_option_cart_icon">
