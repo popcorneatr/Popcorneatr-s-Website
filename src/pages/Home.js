@@ -1,8 +1,12 @@
-import React from "react";
-import "./Home.css";
-import Product from "./Product.js";
+import React, {useContext} from "react";
+import "./styling/Home.css";
+import Product from "../components/Product.js";
+import { CartContext } from "../context/CartContext";
 
 function Home() {
+
+  const { addToCart } = useContext(CartContext);
+
   return (
     <div className="home">
       <div className="home_container">
@@ -21,6 +25,7 @@ function Home() {
             }
             price={7.99}
             rating={5}
+            addToCart={addToCart}
           />
           <Product
             id={"7989009"}
@@ -30,6 +35,7 @@ function Home() {
             }
             price={2.99}
             rating={4}
+            addToCart={addToCart}
           />
         </div>
 
@@ -42,15 +48,17 @@ function Home() {
             }
             price={250.99}
             rating={3}
+            addToCart={addToCart}
           />
           <Product
             id={"8979877"}
             title={"Dark Magician Girl"}
             image={
-              "https://i.ebayimg.com/images/g/v0gAAOSwmjVjkmaa/s-l1600.jpg"
+              "https://cdn8.mavin.io/production/soldItems/324657019/images/image-0.webp"
             }
             price={150.98}
             rating={5}
+            addToCart={addToCart}
           />
           <Product
             id={"0987656"}
@@ -60,6 +68,7 @@ function Home() {
             }
             price={999.99}
             rating={5}
+            addToCart={addToCart}
           />
         </div>
 
@@ -72,6 +81,7 @@ function Home() {
             }
             price={158.99}
             rating={5}
+            addToCart={addToCart}
           />
         </div>
       </div>

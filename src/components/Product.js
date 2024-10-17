@@ -1,8 +1,16 @@
 import React from "react";
-import "./Product.css";
+import "./styling/Product.css";
 import StarIcon from "@mui/icons-material/Star";
 
-function Product({id, title, image, price, rating }) {
+function Product({id, title, image, price, rating, addToCart }) {
+
+  const handleAddToCart = () => {
+    // Create product object
+    const product = { id, title, image, price, rating }; 
+    // Call addToCart passed from parent
+    addToCart(product); 
+  };
+
   return (
     <div className="product">
       <div className="product_info">
@@ -25,7 +33,7 @@ function Product({id, title, image, price, rating }) {
 
       <img src={image} alt="product" />
 
-      <button>Add to Cart</button>
+      <button onClick={handleAddToCart}>Add to Cart</button>
     </div>
   );
 }
