@@ -1,10 +1,17 @@
 import React, { useContext } from "react";
+import { useNavigate } from "react-router-dom";
 import { CartContext } from "../context/CartContext";
 import "./styling/Checkout.css";
 
 function Checkout() {
 
   const { cart, removeFromCart, clearCart, cartSubtotal, itemCount } = useContext(CartContext); 
+
+  const navigate = useNavigate();
+
+  const handleCheckout = () => {
+    navigate("/thankyou");
+  }
 
   function convertToUSD(price) {
     return Number(price).toLocaleString('us-US', { style: 'currency', currency: 'USD' })
@@ -56,8 +63,8 @@ function Checkout() {
             <b>Cart Summary</b>
             <div>Item: {itemCount}</div>
             <b>Cart Subtotal: {convertToUSD(cartSubtotal)}</b>
-            <div>
-              <button>Checkout</button>
+            <div className="checkout_button_container">
+              <button className="checkout_button" onClick={handleCheckout}>Checkout</button>
             </div>
             <div className="remove_button" onClick={clearCart}>Clear Cart</div>
           </div>

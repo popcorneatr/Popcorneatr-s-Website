@@ -8,7 +8,14 @@ export const CartProvider = ({ children }) => {
 
   // Function to add product to cart
   const addToCart = (product) => {
-    setCart([...cart, product]);
+    const productExists = cart.some((item) => item.id === product.id);
+
+    if (!productExists) {
+      setCart([...cart, product]);
+    } else {
+      // console.log("Product is already in the cart");
+      alert("Product is already in the cart and duplicates will not been added!")
+    }
   };
 
   // Function to remove product from cart
