@@ -1,0 +1,53 @@
+
+.sidebar {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 250px; 
+    height: 100%;
+    background-color: #333; 
+    color: white;
+    padding: 20px;
+    z-index: 200; 
+    box-shadow: 2px 0 5px rgba(0, 0, 0, 0.5);
+    transition: transform 0.3s ease;
+}
+  
+.sidebar_content {
+    display: flex;
+    flex-direction: column;
+}
+  
+.sidebar_search_field {
+    margin-bottom: 20px;
+    padding: 10px;
+    border: none;
+    border-radius: 5px;
+    outline: none;
+}
+  
+.sidebar_links {
+    display: flex;
+    flex-direction: column;
+}
+  
+.sidebar_links div {
+    margin: 10px 0;
+    cursor: pointer;
+    transition: color 0.3s;
+}
+  
+.sidebar_links div:hover {
+    color: #ff9800;
+}
+  
+.close_sidebar {
+    margin-top: 20px;
+    background-color: #ff0000;
+    color: white;
+    border: none;
+    padding: 10px;
+    cursor: pointer;
+    border-radius: 5px;
+}
+  

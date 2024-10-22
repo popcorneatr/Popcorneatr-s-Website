@@ -7,7 +7,7 @@
     top: 0;
     z-index: 100;
 }
-
+  
 .store_name{
     color: white;
     font-size: medium;
@@ -21,6 +21,7 @@
     max-width: 100%;
     object-fit: contain;
     cursor: pointer;
+    margin-left: 10px; 
 }
 
 .header_search{
@@ -101,3 +102,33 @@
     margin-right: 10px;
 }
 
+
+.menu_icon {
+    display: none; 
+}
+  
+  /* Media query for small screens */
+@media (max-width: 768px) {
+    .menu_icon {
+        display: block;
+        color: white;
+        cursor: pointer;
+        margin-left: 10px;
+    }
+  
+    .header_nav {
+        display: none; 
+    }
+  
+    .header_search {
+        display: none; 
+    }
+  
+    .store_name {
+        font-size: small;
+    }
+
+    .header {
+        justify-content: flex-start; 
+    }
+}
