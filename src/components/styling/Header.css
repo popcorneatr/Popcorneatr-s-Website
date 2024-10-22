@@ -29,6 +29,7 @@
     align-items: center;
     border-radius: 24px;
     margin: 10px;
+    transition: outline-color 0.3s ease;
 }
 
 .header_search_field{
@@ -36,9 +37,18 @@
     padding: 10px;
     border: none;
     width: 100%;
-    border-radius: 2px 0px 0px 2px;
     outline-color: #cd9042;
 }
+
+.header_search_field:focus {
+    outline: 2px solid #ff9800; 
+  }
+  
+  .header_search:focus-within {
+    outline: 2px solid #ff9800; 
+    border-radius: 2px 2px 2px 2px;
+  }
+  
 
 .header_search_icon{
     color: black;
@@ -46,8 +56,11 @@
     padding: 5px;
     margin: 0;
     height: 22px !important;
-    border-radius: 0px 2px 2px 0px;
     cursor: pointer;
+}
+
+.header_search_icon:hover {
+    background-color: #e4a60a;
 }
 
 .header_nav{

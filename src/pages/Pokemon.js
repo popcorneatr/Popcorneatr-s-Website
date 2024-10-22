@@ -2,12 +2,14 @@ import React from "react";
 import "./styling/Pokemon.css";
 import { useState, useEffect, useContext } from "react";
 import { CartContext } from "../context/CartContext";
+import { SearchContext } from "../context/SearchContext";  
 
 function PokemonPage() {
   const [pokeSet, setPokeSet] = useState([]);
   const [page, setPage] = useState(1);
   const [loading, setLoading] = useState(true);
   const { addToCart } = useContext(CartContext);
+  const { searchTerm } = useContext(SearchContext);
 
   const apicall = async () => {
     try {
@@ -36,6 +38,11 @@ function PokemonPage() {
     apicall();
   }, []);
 
+   // Filter the Pokemon set based on the search term
+   const filteredPokeSet = pokeSet.filter((post) =>
+    post.name.toLowerCase().includes(searchTerm.toLowerCase())
+  );
+
   return (
     <div>
       <img
@@ -49,7 +56,7 @@ function PokemonPage() {
       ) : (
         <div className="pokemon_page">
           <div className="pokemon">
-            {pokeSet.slice(page * 10 - 10, page * 10).map((post) => {
+            {filteredPokeSet.slice(page * 10 - 10, page * 10).map((post) => {
               return (
                 <div className="pokemon_card" key={post.id}>
                   <h2>{post.name}</h2>
@@ -69,7 +76,7 @@ function PokemonPage() {
                 </div>
               );
             })}
-            {pokeSet.length > 0 && (
+            {filteredPokeSet.length > 0 && (
               <div className="pagination">
                 <span
                   className={page > 1 ? "" : "pagination_disabled"}
@@ -77,7 +84,7 @@ function PokemonPage() {
                 >
                   ◀
                 </span>
-                {[...Array(Math.ceil(pokeSet.length / 10))].map((_, i) => {
+                {[...Array(Math.ceil(filteredPokeSet.length / 10))].map((_, i) => {
                   return (
                     <span
                       className={page === i + 1 ? "pagination_selected" : ""}
@@ -90,7 +97,7 @@ function PokemonPage() {
                 })}
                 <span
                   className={
-                    page < Math.ceil(pokeSet.length / 10)
+                    page < Math.ceil(filteredPokeSet.length / 10)
                       ? ""
                       : "pagination_disabled"
                   }

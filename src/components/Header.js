@@ -4,11 +4,14 @@ import SearchIcon from "@mui/icons-material/Search";
 import ShoppingCartIcon from "@mui/icons-material/ShoppingCart";
 import {useNavigate} from "react-router-dom";
 import { CartContext } from "../context/CartContext"
+import { SearchContext } from "../context/SearchContext";
 
 
 function Header() {
 
   const { itemCount } = useContext(CartContext);
+  const { setSearchTerm } = useContext(SearchContext);
+  const [searchInput, setSearchInput] = useState("");
   const [title, setTitle] = useState("Pokemon")
   const navigate = useNavigate();
 
@@ -31,6 +34,23 @@ const handleClickPokemon = () => {
     navigate("/")
   }
 
+  // Function to trigger search when SearchIcon is clicked
+  const handleSearchClick = () => {
+    setSearchTerm(searchInput.toLowerCase()); 
+  };
+
+  // Handle search on 'Enter' key press
+  const handleKeyPress = (event) => {
+    if (event.key === "Enter") {
+      setSearchTerm(searchInput.toLowerCase()); 
+    }
+  };
+
+   // Handle the change in search input
+   const handleSearchInputChange = (e) => {
+    setSearchInput(e.target.value);
+  };
+
   return (
     <div className="header">
       <img
@@ -48,8 +68,10 @@ const handleClickPokemon = () => {
           type="text"
           placeholder="Search..."
           title="search bar"
+          onChange={handleSearchInputChange}
+          onKeyDown={handleKeyPress}
         />
-        <SearchIcon className="header_search_icon"/>
+        <SearchIcon className="header_search_icon" onClick={handleSearchClick}/>
       </div>
 
       <div className="header_nav">
@@ -58,10 +80,11 @@ const handleClickPokemon = () => {
           <span className="header_option_line_two">Sign In</span>
         </div>
 
-        <div className="header_option">
+        {/* change to about me page maybe */}
+        {/* <div className="header_option">
           <span className="header_option_line_one">Returns</span>
           <span className="header_option_line_two">& Orders</span>
-        </div>
+        </div> */}
 
         <div className="header_option">
           <span className="header_option_line_one">Visit</span>
