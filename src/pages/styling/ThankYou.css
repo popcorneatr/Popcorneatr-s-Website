@@ -33,3 +33,38 @@
 .home_button:hover {
     color: blue;
 }
+
+/* Media query for small screens */
+@media (max-width: 768px) {
+    .checkout_page .checkout_item {
+        display: flex;
+        flex-direction: column;
+        align-items: center; 
+        text-align: center;
+        width: 100%; 
+        margin-bottom: 20px; 
+    }
+
+    .checkout_page .img_info {
+        margin: 0 auto;
+        width: auto; 
+    }
+
+    .checkout_page .item_info,
+    .checkout_page .price_info {
+        display: inline; 
+        margin: 5px; 
+        font-size: 1.2rem; 
+    }
+
+    .checkout_page .price_info {
+        font-weight: bold; 
+    }
+
+    .checkout_page .remove_button {
+        margin-top: 10px;
+        width: 100%; 
+        text-align: center;
+        display: block;
+    }
+}

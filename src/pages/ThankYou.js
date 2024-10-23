@@ -30,7 +30,7 @@ function ThankYou() {
                 
                 <div className="img_info">
                   {item.images && item.images.small ? (
-                  <img src={item.images.small} alt={item.name} />
+                  <img className="img_resize" src={item.images.small} alt={item.name} />
                   ) : item.image ? (
                   <img className="img_resize" src={item.image} alt={item.title} />
                   ) : (

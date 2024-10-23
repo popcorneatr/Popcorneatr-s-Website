@@ -21,6 +21,11 @@
     margin: 10px;
 }
 
+.home_image {
+    width: 100vw;
+    z-index: -1;
+}
+
 /* Adjust layout on smaller screens */
 @media (max-width: 1200px) {
     .home_row .product {
@@ -34,7 +39,4 @@
     }
 }
 
-.home_image {
-    width: 100vw;
-    z-index: -1;
-}
+

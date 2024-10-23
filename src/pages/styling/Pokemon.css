@@ -7,7 +7,7 @@
     flex-wrap: wrap;
     padding: 10px;
     justify-content: center;
-    align-items: flex-start; /* Aligns items from the top */
+    align-items: flex-start;
     width: 100%;
 }
 
@@ -36,7 +36,7 @@
 }
 
 .pokemon_banner{
-    width: 99.1vw;
+    width: 100%;
 }
 
 .pagination{
