@@ -2,10 +2,12 @@ import React, { useContext } from "react";
 import { useNavigate } from "react-router-dom";
 import { CartContext } from "../context/CartContext";
 import { SearchContext } from "../context/SearchContext";
+import { AuthContext } from "../context/AuthContext";
 import "./styling/Sidebar.css"; 
 
 const Sidebar = ({ isOpen, onClose }) => {
-  const { itemCount } = useContext(CartContext);
+  const { user, logout } = useContext(AuthContext);
+  const { itemCount, clearCart } = useContext(CartContext);
   const { setSearchTerm } = useContext(SearchContext);
   const [searchInput, setSearchInput] = React.useState("");
   const navigate = useNavigate();
@@ -38,6 +40,18 @@ const Sidebar = ({ isOpen, onClose }) => {
     onClose(); 
   };
 
+  const handleClickAuthForm = () => {
+    navigate("/authform");
+    onClose();
+  }
+
+  const handleLogout = () => {
+    logout();  
+    clearCart()
+    navigate("/"); 
+    onClose();  
+  };
+
   return (
     <>
       {isOpen && (
@@ -55,7 +69,13 @@ const Sidebar = ({ isOpen, onClose }) => {
               <div onClick={handleClickHome}>Home</div>
               <div onClick={handleClickPokemon}>Pokemon</div>
               <div onClick={handleClickCheckout}>Cart ({itemCount})</div>
-              <div>Sign In</div>
+              {user ? (
+                // Show Logout if user is logged in
+                <div onClick={handleLogout}>Logout</div>  
+              ) : (
+                // Show Login if user is logged out
+                <div onClick={handleClickAuthForm}>Login</div>  
+              )}
             </div>
           </div>
           <button className="close_sidebar" onClick={onClose}>Close</button>

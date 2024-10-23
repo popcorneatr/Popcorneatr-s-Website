@@ -7,27 +7,28 @@ import ShoppingCartIcon from "@mui/icons-material/ShoppingCart";
 import {useNavigate} from "react-router-dom";
 import { CartContext } from "../context/CartContext"
 import { SearchContext } from "../context/SearchContext";
-
+import { AuthContext } from '../context/AuthContext';
 
 function Header() {
 
-  const { itemCount } = useContext(CartContext);
+  const { itemCount, clearCart } = useContext(CartContext);
   const { setSearchTerm } = useContext(SearchContext);
+  const { user, logout } = useContext(AuthContext);
   const [searchInput, setSearchInput] = useState("");
   const [title, setTitle] = useState("Pokemon")
   const [sidebarOpen, setSidebarOpen] = useState(false);
   const navigate = useNavigate();
 
-const handleClickPokemon = () => {
-  if (title === "Pokemon") {
-    navigate("/pokemon")
-    setTitle("Yugioh")
-  }else {
-    navigate("/")
-    setTitle("Pokemon")
+  const handleClickPokemon = () => {
+    if (title === "Pokemon") {
+      navigate("/pokemon")
+      setTitle("Yugioh")
+    }else {
+      navigate("/")
+      setTitle("Pokemon")
+    }
+    
   }
-  
-}
 
   const handleClickCheckout = () => {
     navigate("/checkout");
@@ -35,6 +36,10 @@ const handleClickPokemon = () => {
 
   const handleClickHome = () => {
     navigate("/")
+  }
+
+  const handleClickAuthForm = () => {
+    navigate("/authform")
   }
 
   // Function to trigger search when SearchIcon is clicked
@@ -64,6 +69,11 @@ const handleClickPokemon = () => {
       setSidebarOpen(false); 
     }
   };
+
+  const handleSignOut = () => {
+    clearCart(); 
+    logout();    
+};
 
   useEffect(() => {
     window.addEventListener("resize", handleResize); 
@@ -106,8 +116,17 @@ const handleClickPokemon = () => {
 
       <div className="header_nav">
         <div className="header_option">
-          <span className="header_option_line_one">Hello Guest</span>
-          <span className="header_option_line_two">Sign In</span>
+          {user ? (
+            <>
+              <span className="header_option_line_one">Hello {user.name}</span>
+              <span className="header_option_line_two" onClick={handleSignOut}>Sign Out</span>
+            </>) : (
+              <>
+                <span className="header_option_line_one"> Hello, Guest</span>
+                <span className="header_option_line_two" onClick={handleClickAuthForm}>Login</span>
+              </>
+            )}
+          
         </div>
 
         {/* change to about me page maybe */}
