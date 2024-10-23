@@ -1,11 +1,12 @@
 import React, { useState, useContext } from 'react'
 import { AuthContext } from '../context/AuthContext';
-import {useNavigate} from "react-router-dom";
+import { useNavigate, useLocation } from "react-router-dom";
 import "./styling/AuthForm.css"
 
 function AuthForm() {
 
     const navigate = useNavigate();
+    const location = useLocation();
     const { login } = useContext(AuthContext);
     const [isLogin, setIsLogin] = useState(true);
     const [formData, setFormData] = useState({
@@ -13,6 +14,10 @@ function AuthForm() {
         email: "",
         password: ""
     });
+    
+    // Get the path the user was trying to access before being redirected to the login page
+    // Default to home if no previous page
+    const redirectPath = location.state?.from?.pathname || "/"; 
 
     const toggleForm = () => {
         setIsLogin(!isLogin);
@@ -34,10 +39,10 @@ function AuthForm() {
         e.preventDefault();
         if (isLogin) {
             login({ name: formData.email.split('@')[0], email: formData.email });
-            navigate("/")
+            navigate(redirectPath)
         } else {
             login({ name: formData.name, email: formData.email });
-            navigate("/")
+            navigate(redirectPath)
         }
     };
 

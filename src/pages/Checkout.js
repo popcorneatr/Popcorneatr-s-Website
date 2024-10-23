@@ -1,21 +1,31 @@
 import React, { useContext } from "react";
 import { useNavigate } from "react-router-dom";
 import { CartContext } from "../context/CartContext";
+import { AuthContext } from '../context/AuthContext';
 import "./styling/Checkout.css";
 
 function Checkout() {
 
   const { cart, removeFromCart, clearCart, cartSubtotal, itemCount } = useContext(CartContext); 
+  const { user } = useContext(AuthContext);
 
   const navigate = useNavigate();
 
   const handleCheckout = () => {
-    navigate("/thankyou");
+    if (!user) {
+       // If user is not logged in, redirect to login page and store the current location
+       navigate('/authform', { state: { from: { pathname: '/checkout' } } });
+    } else {
+      // Proceed with the checkout process
+      navigate("/thankyou");
+    }
   }
 
   function convertToUSD(price) {
     return Number(price).toLocaleString('us-US', { style: 'currency', currency: 'USD' })
   }
+
+
 
   return (
     <div className="checkout">
