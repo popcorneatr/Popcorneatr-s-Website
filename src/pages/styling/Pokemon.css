@@ -64,4 +64,11 @@
     cursor: default;
 }
 
+@media (max-width: 768px) {
+    .button_container > button{
+        width: 155px;
+        height: 40px;
+        background: #f0c14b;
+    }
 
+}
